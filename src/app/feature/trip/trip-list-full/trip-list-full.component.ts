@@ -13,7 +13,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class TripListFullComponent implements OnInit {
   trips?: Trip[];
-  currentTrip: Trip = {};
+  currentTrip: Trip = {
+    _id: undefined,
+    title: '',
+    destinationId: 0,
+    highlights: '',
+    published: false
+  };
   currentIndex = -1;
   title = '';
 
@@ -35,12 +41,18 @@ export class TripListFullComponent implements OnInit {
   
   refreshList(): void {
     this.retrieveTrips();
-    this.currentTrip = {};
+    this.currentTrip = {
+      _id: undefined,
+      title: '',
+      destinationId: 0,
+      highlights: '',
+      published: false
+    };
     this.currentIndex = -1;
   }
 
-  setActiveTrip(tutorial: Trip, index: number): void {
-    this.currentTrip = tutorial;
+  setActiveTrip(trip: Trip, index: number): void {
+    this.currentTrip = trip;
     this.currentIndex = index;
   }
 
@@ -55,7 +67,13 @@ export class TripListFullComponent implements OnInit {
   }
 
   searchTitle(): void {
-    this.currentTrip = {};
+    this.currentTrip = {
+      _id: undefined,
+      title: '',
+      destinationId: 0,
+      highlights: '',
+      published: false
+    };
     this.currentIndex = -1;
 
     this.tripService.findByTitle(this.title).subscribe({

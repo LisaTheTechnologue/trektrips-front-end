@@ -1,52 +1,65 @@
-<div class="container">
-  <h2>Add Trip</h2>
-
-  <form [formGroup]="form" (ngSubmit)="createTrip()">
-    <div class="submit-form">
-      @if (!submitted) {
+<mat-card>
+  @if (!submitted) {
+  <mat-toolbar color="primary">Add Trip</mat-toolbar>
+  <mat-card-content>
+    <form [formGroup]="form">
       <div class="form-group">
-        <label for="title">Title</label>
-        <input formControlName="title" type="text" class="form-control" id="title" required name="title" />
-        <div *ngIf="f['title'].touched && f['title'].invalid" class="alert alert-danger">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" #title required name="title"/>
+          <mat-error *ngIf="form.get('title')?.invalid">
+            {{ getErrorMessage('title') }}
+          </mat-error>
+          <!-- <div *ngIf="f['title'].touched && f['title'].invalid" class="alert alert-danger">
           <div *ngIf="f['title'].errors && f['title'].errors['required']">Title is required.</div>
+        </div> -->
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Highlights</mat-label>
+          <input matInput formControlName="highlights" #highlights name="highlights" />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Select a Destination</mat-label>
+          <mat-select formControlName="destinationId" #destinationId name="destinationId">
+            @for (destination of listOfDestinations; track destination) {
+            <mat-option [value]="destination.id">{{destination.city}}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="form.get('destinationId')?.invalid">
+            {{ getErrorMessage('destinationId') }}
+          </mat-error>
+        </mat-form-field>
+      </div> 
+        
+      <div class="file-upload-container">
+        <label class="file-upload-label btn btn-primary">
+          <span>Select a file</span>                          
+          <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
+          <mat-icon>attach_file</mat-icon>
+        </label>
+        
+        <div *ngIf="selectedFile" class="image-preview">
+          <img [src]="imagePreview" alt="Selected image" class="preview-image">
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="highlights">Highlights</label>
-        <input formControlName="highlights" type="text" class="form-control" id="highlights" required
-          name="highlights" />
-      </div>
+    </form>
+  </mat-card-content>
 
-      <div class="form-group">
-        <label for="destination">Destination</label>
-        <mat-select id="destination" name="destination" formControlName="destinationId">
-          <mat-option *ngFor="let destination of listOfDestinations" [value]="destination.id">
-            {{destination.city}}
-          </mat-option>
-        </mat-select>
-        <!-- <select formControlName="destinationId" class="form-select" name="destination">
-          <option *ngFor="let destination of listOfDestinations" [value]="destination.id">
-            {{destination.city}}</option>
-        </select> -->
-      </div>
+  <mat-card-actions class="mx-auto">
+    <button class="btn btn-primary" (click)="createTrip()" type="submit">
+      Save
+    </button>
 
-      <div class="form-group">
-        <label for="img-upload">Images</label>
-        <div class="file-upload-container">
-          <label class="file-upload-label">
-            <span>Select an image</span>
-          </label>
-        </div>
-        <input formControlName="highlights" type="text" class="form-control" id="highlights" required
-          name="highlights" />
-      </div>
-
-      <button type="submit" class="btn btn-success">Submit</button>
-      } @else {
-      <h4>Trip was submitted successfully!</h4>
-      }
-      <a href="#" routerLink="/trips" class="btn btn-primary">Cancel</a>
-    </div>
-  </form>
-</div>
+    <button type="button" class="btn btn-danger" routerLink="/trips" >
+      Cancel
+    </button>
+  </mat-card-actions>
+  } @else {
+  <h4>Trip was submitted successfully!</h4>
+  }
+</mat-card>

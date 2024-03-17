@@ -30,7 +30,7 @@ export class TripService {
   }
 
   update(id: any, data: any): Observable<any> {
-    return this.http.put('${API_URL}/${id}', data);
+    return this.http.put('${API_URL}/${id}', data, httpOptions);
   }
 
   delete(id: any): Observable<any> {

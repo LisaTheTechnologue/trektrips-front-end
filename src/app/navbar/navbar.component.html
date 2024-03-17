@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
+    <span>Tripify</span>
     <a href="/home" [routerLink]="['/home']" mat-button>Home </a>
-
+    <a href="/about" [routerLink]="['/about']" mat-button>About </a>
     <a href="/trips" [routerLink]="['/trips']" mat-button>Trips </a>
 
     @if (showAdminBoard) {
@@ -20,7 +21,7 @@
     <a href="/user" [routerLink]="['/user']" mat-button>User</a>
 
     }
-
+    <span class="navbar-spacer"></span>
     @if (!isLoggedIn) {
 
     <a href="/register" [routerLink]="['/register']" mat-button>Sign Up</a>
@@ -31,7 +32,7 @@
 
     <a href="/profile" [routerLink]="['/trips']" mat-button>{{ username }}</a>
 
-    <a href class="nav-link" (click)="logout()">LogOut</a>
+    <a href class="nav-link" (click)="logout()" mat-button>LogOut</a>
 
     }
 </mat-toolbar>

@@ -21,7 +21,7 @@
     <div class="col-md-6">
       <h4>Trips List</h4>
       <ul class="list-group">
-        @for (trip of trips; track trip.id; let i = $index) {
+        @for (trip of trips; track trip._id; let i = $index) {
         <li
           class="list-group-item"
         >
