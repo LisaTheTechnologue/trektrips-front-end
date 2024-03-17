@@ -1,0 +1,52 @@
+<div class="container">
+  <h2>Add Trip</h2>
+
+  <form [formGroup]="form" (ngSubmit)="createTrip()">
+    <div class="submit-form">
+      @if (!submitted) {
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input formControlName="title" type="text" class="form-control" id="title" required name="title" />
+        <div *ngIf="f['title'].touched && f['title'].invalid" class="alert alert-danger">
+          <div *ngIf="f['title'].errors && f['title'].errors['required']">Title is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="highlights">Highlights</label>
+        <input formControlName="highlights" type="text" class="form-control" id="highlights" required
+          name="highlights" />
+      </div>
+
+      <div class="form-group">
+        <label for="destination">Destination</label>
+        <mat-select id="destination" name="destination" formControlName="destinationId">
+          <mat-option *ngFor="let destination of listOfDestinations" [value]="destination.id">
+            {{destination.city}}
+          </mat-option>
+        </mat-select>
+        <!-- <select formControlName="destinationId" class="form-select" name="destination">
+          <option *ngFor="let destination of listOfDestinations" [value]="destination.id">
+            {{destination.city}}</option>
+        </select> -->
+      </div>
+
+      <div class="form-group">
+        <label for="img-upload">Images</label>
+        <div class="file-upload-container">
+          <label class="file-upload-label">
+            <span>Select an image</span>
+          </label>
+        </div>
+        <input formControlName="highlights" type="text" class="form-control" id="highlights" required
+          name="highlights" />
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+      } @else {
+      <h4>Trip was submitted successfully!</h4>
+      }
+      <a href="#" routerLink="/trips" class="btn btn-primary">Cancel</a>
+    </div>
+  </form>
+</div>

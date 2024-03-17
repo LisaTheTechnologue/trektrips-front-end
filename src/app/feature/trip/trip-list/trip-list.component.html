@@ -1,0 +1,43 @@
+<div class="list row">
+    <div class="col-md-8">
+      <!-- <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by title"
+          [(ngModel)]="title"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchTitle()"
+          >
+            Search
+          </button>
+        </div>
+      </div> -->
+    </div>
+    <div class="col-md-6">
+      <h4>Trips List</h4>
+      <ul class="list-group">
+        @for (trip of trips; track trip.id; let i = $index) {
+        <li
+          class="list-group-item"
+        >
+          {{ trip.highlights }} + {{trip.published}}
+        </li>
+        }
+      </ul>
+  
+      <!-- <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTrips()">
+        Remove All
+      </button> -->
+    </div>
+    <!-- <div class="col-md-6">
+      <app-trip-details
+        [viewMode]="true"
+        [currentTrip]="currentTrip"
+      ></app-trip-details>
+    </div> -->
+  </div>

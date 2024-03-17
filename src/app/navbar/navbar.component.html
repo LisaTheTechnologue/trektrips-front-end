@@ -1,0 +1,37 @@
+<mat-toolbar color="primary">
+    <a href="/home" [routerLink]="['/home']" mat-button>Home </a>
+
+    <a href="/trips" [routerLink]="['/trips']" mat-button>Trips </a>
+
+    @if (showAdminBoard) {
+
+    <a href="/admin" [routerLink]="['/admin']" mat-button>Admin Board</a>
+
+    <a href="/trips/all" [routerLink]="['/trips/all']" mat-button>All Trips</a>
+
+    }
+    @if (showModeratorBoard) {
+
+    <a href="/mod" [routerLink]="['/mod']" mat-button>Moderator Board</a>
+
+    }
+    @if (isLoggedIn) {
+
+    <a href="/user" [routerLink]="['/user']" mat-button>User</a>
+
+    }
+
+    @if (!isLoggedIn) {
+
+    <a href="/register" [routerLink]="['/register']" mat-button>Sign Up</a>
+
+    <a href="/login" [routerLink]="['/login']" mat-button>Login</a>
+
+    } @else {
+
+    <a href="/profile" [routerLink]="['/trips']" mat-button>{{ username }}</a>
+
+    <a href class="nav-link" (click)="logout()">LogOut</a>
+
+    }
+</mat-toolbar>

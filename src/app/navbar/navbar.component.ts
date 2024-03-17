@@ -1,25 +1,23 @@
 import { Component } from '@angular/core';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { StorageService } from './_services/storage.service';
-import { AuthService } from './_services/auth.service';
-import { EventBusService } from './_shared/event-bus.service';
-import { Router, RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MaterialModule } from './MaterialModule';
+import { StorageService } from '../_services/storage.service';
+import { AuthService } from '../_services/auth.service';
+import { EventBusService } from '../_shared/event-bus.service';
+import { MaterialModule } from '../MaterialModule';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FeatureModule } from './feature/feature.module';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-navbar',
   standalone: true,
-  imports: [RouterOutlet,NavbarComponent,FlexLayoutModule,
-    MaterialModule,
-    FeatureModule],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [RouterOutlet,RouterModule,MaterialModule,
+    FlexLayoutModule],
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.css'
 })
-export class AppComponent {
-  title = 'front-end';
+export class NavbarComponent {
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;

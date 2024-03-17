@@ -1,25 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { StorageService } from './_services/storage.service';
-import { AuthService } from './_services/auth.service';
-import { EventBusService } from './_shared/event-bus.service';
-import { Router, RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MaterialModule } from './MaterialModule';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FeatureModule } from './feature/feature.module';
+import { StorageService } from '../../_services/storage.service';
+import { AuthService } from '../../_services/auth.service';
+import { EventBusService } from '../../_shared/event-bus.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet,NavbarComponent,FlexLayoutModule,
-    MaterialModule,
-    FeatureModule],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class AppComponent {
-  title = 'front-end';
+export class HomeComponent implements OnInit {
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
